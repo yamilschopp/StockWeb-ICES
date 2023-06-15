@@ -1,0 +1,79 @@
+﻿@model StockWebFinal.Models.Proveedor
+
+@{
+    ViewData["Title"] = "Crear proveedor";
+}
+
+<div class="container-lg col-4">
+    <h1>Registrar proveedor</h1>
+    <form asp-action="Crear" method="POST" onsubmit="return validarCampos();">
+
+        <div class="input-group mb-3">
+            <label asp-for="Denominacion" class="input-group-text">Denominacion</label>
+            <input asp-for="Denominacion" type="text" class="form-control" placeholder="Denominacion" id="denominacion">
+        </div>
+
+        <div class="input-group mb-3">
+            <label asp-for="CuilCuit" class="input-group-text">Codigo Tributario</label>
+            <input asp-for="CuilCuit" type="text" class="form-control" placeholder="Ingresar codigo tributario" id="cuilcuit">
+        </div>
+
+        <div class="input-group mb-3">
+            <label asp-for="Provincia_Id" class="input-group-text">Provincia</label>
+            <select asp-for="Provincia_Id" class="form-control" id="provincia">
+                <option value="">Seleccione una provincia</option>
+                @foreach (var provincia in ViewBag.Provincias)
+                {
+                    <option value="@provincia.Id">@provincia.Nombre</option>
+                }
+            </select>
+        </div>
+
+        <div class="input-group mb-3">
+            <label asp-for="Localidad_Id" class="input-group-text">Localidad</label>
+            <select asp-for="Localidad_Id" class="form-control" id="localidad" disabled>
+                <option value="">Seleccione una localidad</option>
+                @foreach (var localidad in ViewBag.Localidades)
+                {
+                    <option value="@localidad.Id">@localidad.Nombre</option>
+                }
+            </select>
+        </div>
+
+        <div class="input-group mb-3">
+            <label asp-for="Direccion" class="input-group-text">Direccion</label>
+            <input asp-for="Direccion" type="text" class="form-control" placeholder="Ingresar direccion tributario" id="direccion">
+        </div>
+
+        <div class="input-group mb-3">
+            <label asp-for="Telefono" class="input-group-text">Telefono</label>
+            <input asp-for="Telefono" type="tel" class="form-control" placeholder="Ingrese el telefono" id="telefono">
+        </div>
+
+        <div class="input-group mb-3">
+            <label asp-for="Correo" class="input-group-text">Mail</label>
+            <input asp-for="Correo" type="email" class="form-control" placeholder="Ingrese el Correo" id="correo">
+        </div>
+
+        <div class="input-group mb-3">
+            <label asp-for="FechaAlta" class="input-group-text">Fecha de alta</label>
+            <input asp-for="FechaAlta" type="datetime" class="form-control" id="fechaAlta" value="@DateTime.Now" readonly>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Estado">Estado:</label>
+            <select asp-for="Estado" id="Estado" name="Estado" class="form-control">
+                <option value="True">Activo</option>
+                <option value="False">Inactivo</option>
+            </select>
+        </div>
+        <br />
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/js/Localidades.js"></script>
+    <script src="~/js/Validaciones/CrearProveedor.js"></script>
+}

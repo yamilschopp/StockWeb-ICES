@@ -1,0 +1,36 @@
+﻿@model StockWebFinal.Models.Categoria
+
+@{
+    ViewData["Title"] = "Crear categoria";
+}
+
+<div class="container-lg col-4">
+    <h1>Crear Categoria</h1>
+    <form asp-action="Crear" method="POST" onsubmit="return validarCampos();">
+
+        <div class="input-group mb-3">
+            <label asp-for="Nombre" class="input-group-text">Nombre</label>
+            <input asp-for="Nombre" type="text" class="form-control" placeholder="Ingresar Nombre" id="nombre">
+        </div>
+
+        <div class="input-group mb-3">
+            <label asp-for="FechaAlta" class="input-group-text">Fecha de alta</label>
+            <input asp-for="FechaAlta" type="datetime" class="form-control" id="fechaAlta" value="@DateTime.Now" readonly>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Estado">Estado: </label>
+            <select asp-for="Estado" id="Estado" name="Estado" class="form-control">
+                <option value="True">Activo</option>
+                <option value="False">Inactivo</option>
+            </select>
+        </div>
+        <br>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/js/Validaciones/CrearCategoria.js"></script>
+}

@@ -1,0 +1,70 @@
+﻿@model StockWebFinal.Models.Egreso
+
+@{
+    ViewData["Title"] = "Movimiento de Egreso";
+}
+
+
+<div class="container-lg col-4">
+    <h1>Movimiento de egreso</h1>
+    <form asp-action="RestarCantidad" method="POST">
+
+        <div class="input-group mb-3">
+            <label asp-for="Usuario_Id" class="input-group-text">usuario</label>
+            <select asp-for="Usuario_Id" class="form-control" id="usuario">
+                <option value="">Seleccione el usuario</option>
+                @foreach (var usuario in ViewBag.Usuarios)
+                {
+                    <option value="@usuario.Id">@usuario.Nombre</option>
+                }
+            </select>
+        </div>
+
+        <div class="input-group mb-3">
+            <label asp-for="Categoria_Id" class="input-group-text">Categoria</label>
+            <select asp-for="Categoria_Id" class="form-control" id="categoria">
+                <option value="">Seleccione la categoria</option>
+                @foreach (var categoria in ViewBag.Categorias)
+                {
+                    <option value="@categoria.Id">@categoria.Nombre</option>
+                }
+            </select>
+        </div>
+
+        <div class="input-group mb-3">
+            <label asp-for="Marca_Id" class="input-group-text">Marca</label>
+            <select asp-for="Marca_Id" class="form-control" id="marca">
+                <option value="">Seleccione la marca</option>
+                @foreach (var marca in ViewBag.Marcas)
+                {
+                    <option value="@marca.Id">@marca.Nombre</option>
+                }
+            </select>
+        </div>
+
+        <div class="input-group mb-3">
+            <label asp-for="Producto_Id" class="input-group-text">Producto</label>
+            <select asp-for="Producto_Id" class="form-control" id="producto">
+                <option value="">Seleccione el producto</option>
+                @foreach (var producto in ViewBag.Productos)
+                {
+                    <option value="@producto.Id">@producto.Nombre</option>
+                }
+            </select>
+        </div>
+
+        <div class="input-group mb-3">
+            <label asp-for="Cantidad" class="input-group-text">Cantidad</label>
+            <input asp-for="Cantidad" type="text" class="form-control" placeholder="Ingrese la cantidad" id="cantidad">
+        </div>
+
+        <div class="input-group mb-3">
+            <label asp-for="Fecha" class="input-group-text">Fecha</label>
+            <input asp-for="Fecha" type="datetime" class="form-control" id="fechaAlta" value="@DateTime.Now" readonly>
+        </div>
+
+        <br>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>

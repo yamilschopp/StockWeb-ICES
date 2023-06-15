@@ -1,0 +1,50 @@
+﻿@model List<StockWebFinal.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Listado de usuarios";
+}
+
+<p>
+    <a asp-action="Crear" class="btn btn-primary">Crear Usuario</a>
+</p>
+
+<div>
+    <h1>Listado de Usuarios</h1>
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered" id="" width="100%" cellspacing="0">
+            <thead class="table-dark">
+                <tr>
+                    <th>Nombre de usuario</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Fecha de alta</th>
+                    <th>Administrador</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="table-secondary">
+                @foreach (var usuario in Model)
+                {
+                    <tr>
+                        <td>@usuario.NombreUsuario</td>
+                        <td>@usuario.Nombre</td>
+                        <td>@usuario.Apellido</td>
+                        <td>@usuario.FechaAlta</td>
+                        <td>@usuario.Administrador</td>
+                        <td>@usuario.Estado</td>
+                        <td>
+                            <a asp-action="Detalles" asp-route-id="@usuario.Id" class="btn btn-info">Detalles</a>
+                            <a asp-action="Editar" asp-route-id="@usuario.Id" class="btn btn-warning">Editar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No hay registros</p>
+    }
+</div>
